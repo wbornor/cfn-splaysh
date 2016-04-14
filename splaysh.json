@@ -15,10 +15,16 @@
 				"AttributeDefinitions": [{
 					"AttributeName": "nutid",
 					"AttributeType": "S"
+				}, {
+					"AttributeName": "itemid",
+					"AttributeType": "S"
 				}],
 				"KeySchema": [{
-					"AttributeName": "itemid",
+					"AttributeName": "nutid",
 					"KeyType": "HASH"
+				}, {
+					"AttributeName": "itemid",
+					"KeyType": "RANGE"
 				}],
 				"ProvisionedThroughput": {
 					"ReadCapacityUnits": "1",
