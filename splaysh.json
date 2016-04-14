@@ -1,0 +1,30 @@
+{
+	"Resources": {
+		"tableSplayshItem": {
+			"Type": "AWS::DynamoDB::Table",
+			"Properties": {
+				"TableName": {
+					"Fn::Join": [
+						".", [
+							"wca",
+							"splaysh",
+							"items"
+						]
+					]
+				},
+				"AttributeDefinitions": [{
+					"AttributeName": "nutid",
+					"AttributeType": "S"
+				}],
+				"KeySchema": [{
+					"AttributeName": "itemid",
+					"KeyType": "HASH"
+				}],
+				"ProvisionedThroughput": {
+					"ReadCapacityUnits": "1",
+					"WriteCapacityUnits": "1"
+				}
+			}
+		}
+	}
+}
