@@ -19,10 +19,10 @@
 					"AttributeType": "S"
 				}],
 				"KeySchema": [{
-					"AttributeName": "nutid",
+					"AttributeName": "nut_id",
 					"KeyType": "HASH"
 				}, {
-					"AttributeName": "itemid",
+					"AttributeName": "id",
 					"KeyType": "RANGE"
 				}],
 				"ProvisionedThroughput": {
