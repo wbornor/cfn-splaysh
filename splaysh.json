@@ -12,10 +12,10 @@
 					]
 				},
 				"AttributeDefinitions": [{
-					"AttributeName": "nutid",
+					"AttributeName": "nut_id",
 					"AttributeType": "S"
 				}, {
-					"AttributeName": "itemid",
+					"AttributeName": "id",
 					"AttributeType": "S"
 				}],
 				"KeySchema": [{
