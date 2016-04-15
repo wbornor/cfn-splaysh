@@ -6,8 +6,7 @@
 				"TableName": {
 					"Fn::Join": [
 						".", [
-							"wca",
-							"splaysh",
+							"splayshdb",
 							"items"
 						]
 					]
