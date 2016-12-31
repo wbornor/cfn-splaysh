@@ -1,0 +1,64 @@
+--- 
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Create splaysh web CFN assets"
+Parameters:
+  EnvironmentTag:
+    Type: String
+    Description: Environment of the Stack
+    Default: "dev"
+  ReadCapacityUnits:
+      Type: Number
+      Description: default DynamoDB provisioned Read capacity
+      Default: "1"
+  WriteCapacityUnits:
+      Type: Number
+      Description: default DynamoDB provisioned Write capacity
+      Default: "1"
+Resources:
+  itemstable:
+    Type: "AWS::DynamoDB::Table"
+    Properties:
+      TableName: !Join [ ".", [ "splayshdb", Ref: EnvironmentTag, items ] ]
+      AttributeDefinitions:
+        -
+          AttributeName: "item_id"
+          AttributeType: "S"
+        -
+          AttributeName: "nut_id"
+          AttributeType: "N"
+        -
+          AttributeName: "create_date"
+          AttributeType: "S"
+      KeySchema:
+        -
+          AttributeName: "item_id"
+          KeyType: "HASH"
+        -
+          AttributeName: "create_date"
+          KeyType: "RANGE"
+      ProvisionedThroughput:
+          ReadCapacityUnits:
+            Ref: ReadCapacityUnits
+          WriteCapacityUnits:
+            Ref: WriteCapacityUnits
+      GlobalSecondaryIndexes:
+        -
+          IndexName: "item-nut-createdate"
+          KeySchema:
+            -
+              AttributeName: "nut_id"
+              KeyType: "HASH"
+            -
+              AttributeName: "create_date"
+              KeyType: "RANGE"
+          Projection:
+            NonKeyAttributes:
+              - "item_id"
+              - "title"
+              - "content"
+            ProjectionType: "INCLUDE"
+          ProvisionedThroughput:
+            ReadCapacityUnits:
+              Ref: ReadCapacityUnits
+            WriteCapacityUnits:
+              Ref: WriteCapacityUnits
