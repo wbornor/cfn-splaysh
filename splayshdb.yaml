@@ -21,7 +21,7 @@ Resources:
       TableName: !Join [ ".", [ "splayshdb", Ref: EnvironmentTag, items ] ]
       AttributeDefinitions:
         -
-          AttributeName: "item_id"
+          AttributeName: "id"
           AttributeType: "S"
         -
           AttributeName: "nut_id"
@@ -31,7 +31,7 @@ Resources:
           AttributeType: "S"
       KeySchema:
         -
-          AttributeName: "item_id"
+          AttributeName: "id"
           KeyType: "HASH"
         -
           AttributeName: "create_date"
@@ -53,7 +53,7 @@ Resources:
               KeyType: "RANGE"
           Projection:
             NonKeyAttributes:
-              - "item_id"
+              - "id"
               - "title"
               - "content"
             ProjectionType: "INCLUDE"
