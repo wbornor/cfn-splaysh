@@ -24,8 +24,8 @@ Resources:
           AttributeName: "id"
           AttributeType: "S"
         -
-          AttributeName: "nut_id"
-          AttributeType: "N"
+          AttributeName: "nut_type"
+          AttributeType: "S"
         -
           AttributeName: "create_date"
           AttributeType: "S"
@@ -33,9 +33,6 @@ Resources:
         -
           AttributeName: "id"
           KeyType: "HASH"
-        -
-          AttributeName: "create_date"
-          KeyType: "RANGE"
       ProvisionedThroughput:
           ReadCapacityUnits:
             Ref: ReadCapacityUnits
@@ -46,7 +43,7 @@ Resources:
           IndexName: "item-nut-createdate"
           KeySchema:
             -
-              AttributeName: "nut_id"
+              AttributeName: "nut_type"
               KeyType: "HASH"
             -
               AttributeName: "create_date"
