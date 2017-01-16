@@ -29,6 +29,9 @@ Resources:
         -
           AttributeName: "create_date"
           AttributeType: "S"
+        -
+          AttributeName: "is_public"
+          AttributeType: "N"
       KeySchema:
         -
           AttributeName: "id"
@@ -49,11 +52,23 @@ Resources:
               AttributeName: "create_date"
               KeyType: "RANGE"
           Projection:
-            NonKeyAttributes:
-              - "id"
-              - "title"
-              - "content"
-            ProjectionType: "INCLUDE"
+            ProjectionType: "ALL"
+          ProvisionedThroughput:
+            ReadCapacityUnits:
+              Ref: ReadCapacityUnits
+            WriteCapacityUnits:
+              Ref: WriteCapacityUnits
+        -
+          IndexName: "item-ispublic-createdate"
+          KeySchema:
+            -
+              AttributeName: "is_public"
+              KeyType: "HASH"
+            -
+              AttributeName: "create_date"
+              KeyType: "RANGE"
+          Projection:
+            ProjectionType: "ALL"
           ProvisionedThroughput:
             ReadCapacityUnits:
               Ref: ReadCapacityUnits
